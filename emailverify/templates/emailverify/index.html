@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verifier</title>
+</head>
+<body>
+    <style>
+        body{
+            background-color: #1d1f21;
+            color: #c5c8c6;
+            font-family: 'Courier New', Courier, monospace;
+
+
+        }
+        h1{
+            text-align: center;
+        }
+        h1,h2,h3 {
+            color: #f0c674;
+            font-weight: bold;
+        }
+        form{
+            margin-top: 50px;
+        }
+        label,input[type="submit"]{
+            color: #c5c8c6;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            background-color: #282a2e;
+            color: #c5c8c6;
+            border: 2px solid #373b41;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        input[type="submit"]{
+            background-color: #373b41;
+            color: #c5c8c6;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .results {
+            margin-top: 50px;
+        }
+        p {
+            margin-top: 20px;
+        }
+
+    </style>
+    <h1>Email Verifier</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="domain">Enter a domain:</label>
+        <input type="text" name="domain" id="domain">
+        <input type="submit" value="Verify">
+    </form>
+    {% if valid is not None %}
+        <h2>Results:</h2>
+        <p>Valid:{{ valid }} </p>
+        <p>Block: {{ block }}</p>
+        <p>Disposable : {{ disposable }} </p>
+        <p>Domain : {{ domain }} </p>
+        <p>Text: {{ text }} </p>
+        <p>Reason: {{ reason }} </p>
+        <p>Risk: {{ risk }}</p>
+        <p>MX Host : {{ mx_host }} </p>
+        <p>MX IP : {{ mx_ip }} </p>
+        <p>MX Info : {{ mx_info }} </p>
+        <p>Last Changed At: {{ last_changed_at }} </p>
+
+    {% endif %}
+    
+    
+</body>
+</html>
